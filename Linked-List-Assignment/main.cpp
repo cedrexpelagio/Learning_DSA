@@ -64,8 +64,8 @@ int main()
 void printHeader()
 {
     cout << "------------------------------------------------------------------------------\n";
-    cout << "Name    :\n";
-    cout << "Course  :\n";
+    cout << "Name    :[Pelagio, Cedrex, Q.]\n";
+    cout << "Course  :[BSIT-2-1]\n";
     cout << "------------------------------------------------------------------------------\n\n";
     cout << "Linked List |  INSERTION OPERATION\n\n";
     cout << "Insert a new node at the beginning Linked List:\n";
