@@ -29,6 +29,28 @@ public:
         head = newNode;
     }
 
+    void addEnd(int value)
+    {
+        Node *newNode = new Node;
+        Node *lastNode = head;
+
+        newNode->data = value;
+        newNode->next = NULL;
+
+        if (head == NULL)
+        {
+            head = newNode;
+        }
+        else
+        {
+            while(lastNode->next!= NULL){
+               lastNode = lastNode->next;
+            }
+            lastNode->next = newNode;
+        }
+
+    }
+
     void display()
     {
         Node *temp = head;
@@ -95,6 +117,6 @@ void addNodes(LinkedList *list)
     {
         cout << "  Input data for node " << i + 1 << ": ";
         cin >> value;
-        list->addFirst(value);
+        list->addEnd(value);
     }
 }
