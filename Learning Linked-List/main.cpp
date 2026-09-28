@@ -51,6 +51,39 @@ public:
 
     }
 
+    void addInPosition(int position, int value){
+        if(position <= 0){
+            cout << "Invalid!\n";
+            return;
+        }
+
+        Node *newNode = new Node;
+        newNode->data = value;
+
+
+        if(position == 1){
+            newNode->next = head;
+            head = newNode;
+        return;
+        }
+
+        Node *currentNode  = head;
+        int currentPosition = 1;
+
+        while (currentNode != NULL && currentPosition < position - 1){
+            currentNode = currentNode->next;
+            currentPosition++;
+        }
+
+        if(currentNode == NULL){
+            cout << "No position\n";
+        } else {
+            newNode->next = currentNode->next;
+            currentNode->next = newNode;
+        }
+
+    }
+
     void display()
     {
         Node *temp = head;
@@ -93,6 +126,7 @@ public:
 
 void printHeader();
 void addNodes(LinkedList *list);
+void insertNode(LinkedList *list);
 
 int main()
 {
@@ -101,6 +135,9 @@ int main()
     addNodes(list);
     list->display();
     list->search();
+
+    insertNode(list);
+    list->display();
 
     return 0;
 }
@@ -119,4 +156,17 @@ void addNodes(LinkedList *list)
         cin >> value;
         list->addEnd(value);
     }
+}
+
+void insertNode(LinkedList *list) {
+
+    int position = 0;
+    int value = 0;
+    cout << "Position: ";
+    cin >> position;
+    cout << "Value: ";
+    cin >> value;
+
+    list->addInPosition(position, value);
+
 }
