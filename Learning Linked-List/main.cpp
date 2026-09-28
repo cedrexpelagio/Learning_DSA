@@ -43,16 +43,18 @@ public:
         }
         else
         {
-            while(lastNode->next!= NULL){
-               lastNode = lastNode->next;
+            while (lastNode->next != NULL)
+            {
+                lastNode = lastNode->next;
             }
             lastNode->next = newNode;
         }
-
     }
 
-    void addInPosition(int position, int value){
-        if(position <= 0){
+    void addInPosition(int position, int value)
+    {
+        if (position <= 0)
+        {
             cout << "Invalid!\n";
             return;
         }
@@ -60,28 +62,31 @@ public:
         Node *newNode = new Node;
         newNode->data = value;
 
-
-        if(position == 1){
+        if (position == 1)
+        {
             newNode->next = head;
             head = newNode;
-        return;
+            return;
         }
 
-        Node *currentNode  = head;
+        Node *currentNode = head;
         int currentPosition = 1;
 
-        while (currentNode != NULL && currentPosition < position - 1){
+        while (currentNode != NULL && currentPosition < position - 1)
+        {
             currentNode = currentNode->next;
             currentPosition++;
         }
 
-        if(currentNode == NULL){
+        if (currentNode == NULL)
+        {
             cout << "No position\n";
-        } else {
+        }
+        else
+        {
             newNode->next = currentNode->next;
             currentNode->next = newNode;
         }
-
     }
 
     void display()
@@ -124,15 +129,18 @@ public:
     }
 };
 
-void printHeader();
-void addNodes(LinkedList *list);
+string getNodeOperation();
+void addNodes(LinkedList *list, string operation);
 void insertNode(LinkedList *list);
 
 int main()
 {
     LinkedList *list = new LinkedList;
+    string operation = "";
 
-    addNodes(list);
+    operation = getNodeOperation();
+
+    addNodes(list, operation);
     list->display();
     list->search();
 
@@ -142,7 +150,26 @@ int main()
     return 0;
 }
 
-void addNodes(LinkedList *list)
+string getNodeOperation()
+{
+
+    int choice = 0;
+    cout << "1. Add First\n";
+    cout << "2. Add End\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+    {
+        return "first";
+    }
+    else if (choice == 2)
+    {
+        return "end";
+    }
+}
+
+void addNodes(LinkedList *list, string operation)
 {
     int value = 0;
     int numOfNodes = 0;
@@ -154,11 +181,19 @@ void addNodes(LinkedList *list)
     {
         cout << "  Input data for node " << i + 1 << ": ";
         cin >> value;
-        list->addEnd(value);
+        if (operation == "first")
+        {
+            list->addFirst(value);
+        }
+        else if (operation == "end")
+        {
+            list->addEnd(value);
+        }
     }
 }
 
-void insertNode(LinkedList *list) {
+void insertNode(LinkedList *list)
+{
 
     int position = 0;
     int value = 0;
@@ -168,5 +203,4 @@ void insertNode(LinkedList *list) {
     cin >> value;
 
     list->addInPosition(position, value);
-
 }
